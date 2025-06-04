@@ -30,8 +30,6 @@ class KeyGenApp:
         self.list_usbs = tk.OptionMenu(master, self.usb_var, *self.usbs)
         self.list_usbs.pack(pady=10)
 
-        tk.Button(master, text="Odśwież USB", command=self.usb_refresh).pack(pady=10)
-
         self.label = tk.Label(master, text="Wprowadź PIN:")
         self.label.pack(pady=5)
 
@@ -43,6 +41,9 @@ class KeyGenApp:
 
         self.status_label = tk.Label(master, text="")
         self.status_label.pack(pady=10)
+
+        self.last_usb_state = self.usbs
+        self.master.after(2000, self.usb_refresh)
 
     def generate_keys(self):
         pin = self.pin_entry.get()
@@ -86,18 +87,21 @@ class KeyGenApp:
                 result.append(p.device)
         return result
     def usb_refresh(self):
-        self.usbs = self.get_usbs()
+        current = self.get_usbs()
 
-        if not self.usbs:
-            self.usbs = ["Brak USB"]
+        if not current:
+            current = ["Brak USB"]
 
-        self.usb_var.set(self.usbs[0])
+        if current != self.last_usb_state:
+            self.usbs = current
+            self.last_usb_state = current
+            self.usb_var.set(self.usbs[0])
 
-        menu = self.list_usbs["menu"]
-        menu.delete(0, "end")
-        for u in self.usbs:
-            menu.add_command(label=u, command=lambda value=u: self.usb_var.set(value))
-
+            menu = self.list_usbs["menu"]
+            menu.delete(0, "end")
+            for u in self.usbs:
+                menu.add_command(label=u, command=lambda value=u: self.usb_var.set(value))
+        self.master.after(2000, self.usb_refresh)
 
 
 
