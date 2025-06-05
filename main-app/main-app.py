@@ -1,7 +1,10 @@
 import os
 import tkinter as tk
+import hashlib
+from Crypto.Cipher import AES
 from tkinter import filedialog
-
+from Crypto.Util.Padding import unpad, pad
+from Crypto.PublicKey import RSA
 import psutil
 
 encryption = None
@@ -11,7 +14,7 @@ class MainApp:
         self.path = ""
         self.master = master
         master.title("Główna aplikacja")
-        master.geometry("400x250")
+        master.geometry("400x300")
 
         self.usbs = self.get_usbs()
 
@@ -21,11 +24,12 @@ class MainApp:
         self.usb_var = tk.StringVar()
         self.usb_var.set(self.usbs[0])
 
-        self.usb_key_status = self.usb_get_key()
+        self.usb_key_status = self.is_usb_key()
 
         self.usb_key_status_text = tk.StringVar()
         if (self.usb_key_status):
             self.usb_key_status_text.set("✅ Wykryto klucz prywatny")
+            self.private_key = self.get_usb_key()
         else:
             self.usb_key_status_text.set("❌ Nie wykryto klucza prywatnego na USB")
 
@@ -41,13 +45,37 @@ class MainApp:
         self.pathLabel= tk.Label(master, text="Wybrany plik: ")
         self.pathLabel.pack(pady=5)
 
+        self.label = tk.Label(master, text="Wprowadź PIN:")
+        self.label.pack(pady=5)
+
+        self.pin_entry = tk.Entry(master, show="*", width=30)
+        self.pin_entry.pack(pady=5)
+
+        self.generate_button = tk.Button(master, text="Podpisz PDF", command=self.sign_pdf)
+        self.generate_button.pack(pady=10)
+
         self.last_usb_state = self.usbs
         self.master.after(2000, self.usb_refresh)
         self.master.after(2000, self.usb_key_check)
 
+    def decrypt_private_key(self):
+        try:
+            iv = self.private_key[:16]
+            cipher_text = self.private_key[16:]
+            hashed_pin = hashlib.sha256(self.pin_entry.get().encode()).digest()
+            cipher = AES.new(hashed_pin, AES.MODE_CBC, iv)
+            decrypted_private_key = RSA.import_key(unpad(cipher.decrypt(cipher_text), AES.block_size))
+            return decrypted_private_key
+        except Exception as e:
+            tk.messagebox.showerror("Błąd", "Wprowadzono nieprawidłowy PIN")
+    
+    def sign_pdf(self):
+        decrypted_key = self.decrypt_private_key()
+
     def choosePdfFile(self):
         self.path = filedialog.askopenfilename(title="Wybierz plik PDF", filetypes=[("Pliki PDF", "*.pdf")])
         self.pathLabel.config(text="Wybrany plik: " + self.path)
+    
     def get_usbs(self):
         result = []
         partitions = psutil.disk_partitions()
@@ -80,12 +108,18 @@ class MainApp:
 
         self.master.after(2000, self.usb_refresh)
 
-    def usb_get_key(self):
+    def get_usb_key(self):
+        usb_path = self.usb_var.get() + "private_key.enc"
+        with open(usb_path, "rb") as f:
+            key = f.read()
+        return key
+
+    def is_usb_key(self):
         usb_path = self.usb_var.get() + "private_key.enc"
         return os.path.isfile(usb_path)
 
     def usb_key_check(self):
-        self.usb_key_status = self.usb_get_key()
+        self.usb_key_status = self.is_usb_key()
 
         if (self.usb_key_status):
             self.usb_key_status_text.set("✅ Wykryto klucz prywatny")
