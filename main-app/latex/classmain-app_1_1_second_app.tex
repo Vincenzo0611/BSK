@@ -1,0 +1,130 @@
+\doxysection{Dokumentacja klasy main-\/app.Second\+App}
+\hypertarget{classmain-app_1_1_second_app}{}\label{classmain-app_1_1_second_app}\index{main-\/app.SecondApp@{main-\/app.SecondApp}}
+\doxysubsubsection*{Metody publiczne}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmain-app_1_1_second_app_a81635a1c46ed78150d197f47bfa0401f}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, master)
+\item 
+\mbox{\hyperlink{classmain-app_1_1_second_app_af7a3a7da16f428b7c56bd236bea042f3}{choose\+Pdf\+File}} (self)
+\item 
+\mbox{\hyperlink{classmain-app_1_1_second_app_a73d314782bbd80b6f9a965c05daa2a1a}{choose\+\_\+public\+\_\+key}} (self)
+\item 
+\mbox{\hyperlink{classmain-app_1_1_second_app_a14ef2ab33157b4be0267570c6935a6cb}{hash\+\_\+pdf}} (self)
+\item 
+\mbox{\hyperlink{classmain-app_1_1_second_app_ac4628b22af60c295b6a918e44b8f606c}{get\+\_\+signature}} (self)
+\item 
+\mbox{\hyperlink{classmain-app_1_1_second_app_acda2e62ba05c56ba5a43e79dc0909949}{get\+\_\+public\+\_\+key}} (self)
+\item 
+\mbox{\hyperlink{classmain-app_1_1_second_app_a33ecc3f1dbada1f11a135e58d5b0eae6}{verify\+\_\+pdf}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Atrybuty publiczne}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmain-app_1_1_second_app_ae136d9652b471fe1e60d65f3a9ebafca}\label{classmain-app_1_1_second_app_ae136d9652b471fe1e60d65f3a9ebafca} 
+str {\bfseries path} = "{}"{}
+\item 
+\Hypertarget{classmain-app_1_1_second_app_ae4f2fe4fa7d8a410755813cba39b8dd5}\label{classmain-app_1_1_second_app_ae4f2fe4fa7d8a410755813cba39b8dd5} 
+str {\bfseries key\+\_\+path} = "{}"{}
+\item 
+\Hypertarget{classmain-app_1_1_second_app_a5ad5d3fc9f942eb5364cdb6c948a08c4}\label{classmain-app_1_1_second_app_a5ad5d3fc9f942eb5364cdb6c948a08c4} 
+{\bfseries master} = master
+\item 
+\Hypertarget{classmain-app_1_1_second_app_a963df5f364641e90a44e9802ecebd8a9}\label{classmain-app_1_1_second_app_a963df5f364641e90a44e9802ecebd8a9} 
+{\bfseries choose\+\_\+pdf\+\_\+button} = tk.\+Button(master, text="{}Wybierz plik PDF"{}, command=self.\+choose\+Pdf\+File)
+\item 
+\Hypertarget{classmain-app_1_1_second_app_aa0495bf7091e11fa1fac55c9a5a78893}\label{classmain-app_1_1_second_app_aa0495bf7091e11fa1fac55c9a5a78893} 
+{\bfseries path\+Label} = tk.\+Label(master, text="{}Wybrany plik\+: "{})
+\item 
+\Hypertarget{classmain-app_1_1_second_app_a6e26c7b0de3e8cbad556f83e955b1efd}\label{classmain-app_1_1_second_app_a6e26c7b0de3e8cbad556f83e955b1efd} 
+{\bfseries choose\+\_\+key\+\_\+button} = tk.\+Button(master, text="{}Wybierz klucz publiczny"{}, command=self.\+choose\+\_\+public\+\_\+key)
+\item 
+\Hypertarget{classmain-app_1_1_second_app_a94f100299f32f27c863933b2a1eb8c67}\label{classmain-app_1_1_second_app_a94f100299f32f27c863933b2a1eb8c67} 
+{\bfseries path\+Label\+Key} = tk.\+Label(master, text="{}Wybrany klucz publiczny\+: "{})
+\item 
+\Hypertarget{classmain-app_1_1_second_app_ae1bb355528fcf2d88e5829f2d0d0cbeb}\label{classmain-app_1_1_second_app_ae1bb355528fcf2d88e5829f2d0d0cbeb} 
+{\bfseries generate\+\_\+button} = tk.\+Button(master, text="{}Zweryfikuj podpis PDFa"{}, command=self.\+verify\+\_\+pdf)
+\item 
+\Hypertarget{classmain-app_1_1_second_app_aed1e6b7aa481bd46196c8518b4deeed8}\label{classmain-app_1_1_second_app_aed1e6b7aa481bd46196c8518b4deeed8} 
+{\bfseries status\+\_\+label} = tk.\+Label(master, text="{}"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Opis szczegółowy}
+\begin{DoxyVerb}    @class SecondApp
+    @brief Aplikacja do weryfikacji podpisu plików PDF przy użyciu klucza publicznego
+\end{DoxyVerb}
+ 
+
+\label{doc-constructors}
+\Hypertarget{classmain-app_1_1_second_app_doc-constructors}
+\doxysubsection{Dokumentacja konstruktora i destruktora}
+\Hypertarget{classmain-app_1_1_second_app_a81635a1c46ed78150d197f47bfa0401f}\index{main-\/app.SecondApp@{main-\/app.SecondApp}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!main-\/app.SecondApp@{main-\/app.SecondApp}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classmain-app_1_1_second_app_a81635a1c46ed78150d197f47bfa0401f} 
+main-\/app.\+Second\+App.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{master}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Inicjalizuje komponenty GUI aplikacji.
+    @param master Główne okno tkinter.
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{classmain-app_1_1_second_app_doc-func-members}
+\doxysubsection{Dokumentacja funkcji składowych}
+\Hypertarget{classmain-app_1_1_second_app_a73d314782bbd80b6f9a965c05daa2a1a}\index{main-\/app.SecondApp@{main-\/app.SecondApp}!choose\_public\_key@{choose\_public\_key}}
+\index{choose\_public\_key@{choose\_public\_key}!main-\/app.SecondApp@{main-\/app.SecondApp}}
+\doxysubsubsection{\texorpdfstring{choose\_public\_key()}{choose\_public\_key()}}
+{\footnotesize\ttfamily \label{classmain-app_1_1_second_app_a73d314782bbd80b6f9a965c05daa2a1a} 
+main-\/app.\+Second\+App.\+choose\+\_\+public\+\_\+key (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Wybiera klucz publiczny z pliku PEM i aktualizuje etykietę.
+\end{DoxyVerb}
+ \Hypertarget{classmain-app_1_1_second_app_af7a3a7da16f428b7c56bd236bea042f3}\index{main-\/app.SecondApp@{main-\/app.SecondApp}!choosePdfFile@{choosePdfFile}}
+\index{choosePdfFile@{choosePdfFile}!main-\/app.SecondApp@{main-\/app.SecondApp}}
+\doxysubsubsection{\texorpdfstring{choosePdfFile()}{choosePdfFile()}}
+{\footnotesize\ttfamily \label{classmain-app_1_1_second_app_af7a3a7da16f428b7c56bd236bea042f3} 
+main-\/app.\+Second\+App.\+choose\+Pdf\+File (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Wybiera plik PDF i aktualizuje etykietę ścieżki.
+\end{DoxyVerb}
+ \Hypertarget{classmain-app_1_1_second_app_acda2e62ba05c56ba5a43e79dc0909949}\index{main-\/app.SecondApp@{main-\/app.SecondApp}!get\_public\_key@{get\_public\_key}}
+\index{get\_public\_key@{get\_public\_key}!main-\/app.SecondApp@{main-\/app.SecondApp}}
+\doxysubsubsection{\texorpdfstring{get\_public\_key()}{get\_public\_key()}}
+{\footnotesize\ttfamily \label{classmain-app_1_1_second_app_acda2e62ba05c56ba5a43e79dc0909949} 
+main-\/app.\+Second\+App.\+get\+\_\+public\+\_\+key (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Wczytuje klucz publiczny z pliku PEM.
+    @return Klucz RSA lub None w przypadku błędu.
+\end{DoxyVerb}
+ \Hypertarget{classmain-app_1_1_second_app_ac4628b22af60c295b6a918e44b8f606c}\index{main-\/app.SecondApp@{main-\/app.SecondApp}!get\_signature@{get\_signature}}
+\index{get\_signature@{get\_signature}!main-\/app.SecondApp@{main-\/app.SecondApp}}
+\doxysubsubsection{\texorpdfstring{get\_signature()}{get\_signature()}}
+{\footnotesize\ttfamily \label{classmain-app_1_1_second_app_ac4628b22af60c295b6a918e44b8f606c} 
+main-\/app.\+Second\+App.\+get\+\_\+signature (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Pobiera podpis z metadanych PDF.
+    @return Podpis w formie bajtów lub None, jeśli nie znaleziono lub wystąpił błąd.
+\end{DoxyVerb}
+ \Hypertarget{classmain-app_1_1_second_app_a14ef2ab33157b4be0267570c6935a6cb}\index{main-\/app.SecondApp@{main-\/app.SecondApp}!hash\_pdf@{hash\_pdf}}
+\index{hash\_pdf@{hash\_pdf}!main-\/app.SecondApp@{main-\/app.SecondApp}}
+\doxysubsubsection{\texorpdfstring{hash\_pdf()}{hash\_pdf()}}
+{\footnotesize\ttfamily \label{classmain-app_1_1_second_app_a14ef2ab33157b4be0267570c6935a6cb} 
+main-\/app.\+Second\+App.\+hash\+\_\+pdf (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}   @brief Oblicza hash SHA256 z zawartości PDF.
+   @return Hash obiektu typu SHA256Hash lub None w przypadku błędu.
+\end{DoxyVerb}
+ \Hypertarget{classmain-app_1_1_second_app_a33ecc3f1dbada1f11a135e58d5b0eae6}\index{main-\/app.SecondApp@{main-\/app.SecondApp}!verify\_pdf@{verify\_pdf}}
+\index{verify\_pdf@{verify\_pdf}!main-\/app.SecondApp@{main-\/app.SecondApp}}
+\doxysubsubsection{\texorpdfstring{verify\_pdf()}{verify\_pdf()}}
+{\footnotesize\ttfamily \label{classmain-app_1_1_second_app_a33ecc3f1dbada1f11a135e58d5b0eae6} 
+main-\/app.\+Second\+App.\+verify\+\_\+pdf (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Weryfikuje podpis PDF przy użyciu SHA256 i RSA.
+\end{DoxyVerb}
+ 
+
+Dokumentacja dla tej klasy została wygenerowana z pliku\+:\begin{DoxyCompactItemize}
+\item 
+main-\/app.\+py\end{DoxyCompactItemize}

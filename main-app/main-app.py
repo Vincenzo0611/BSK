@@ -1,6 +1,8 @@
 import os
 import tkinter as tk
 import hashlib
+from io import BytesIO
+
 from Crypto.Cipher import AES
 from tkinter import filedialog
 from Crypto.Util.Padding import unpad, pad
@@ -13,7 +15,15 @@ import psutil
 encryption = None
 
 class MainApp:
+    """
+        @class MainApp
+        @brief Aplikacja do podpisywania plików PDF przy użyciu klucza prywatnego z USB i wprowadzonego PIN-u.
+     """
     def __init__(self, master):
+        """
+            @brief Inicjalizuje GUI
+            @param master Obiekt głównego okna tkinter.
+        """
         self.path = ""
         self.master = master
         master.title("Główna aplikacja")
@@ -65,6 +75,10 @@ class MainApp:
         self.master.after(2000, self.usb_key_check)
 
     def decrypt_private_key(self):
+        """
+            @brief Deszyfruje klucz prywatny z pendrive'a za pomocą wprowadzonego PIN-u.
+            @return RSA.RsaKey Obiekt zdeszyfrowanego klucza RSA lub None w przypadku błędu.
+        """
         try:
             iv = self.private_key[:16]
             cipher_text = self.private_key[16:]
@@ -77,20 +91,49 @@ class MainApp:
             self.status_label.config(text="❌ Wystąpił błąd podczas deszyfrowania klucza prywatnego.")
     
     def hash_pdf(self):
+        """
+            @brief Tworzy hash SHA-256 z zawartości pliku PDF.
+            @return SHA256 Hash obiektu PDF lub None w przypadku błędu.
+        """
         try:
-            with open(self.path, "rb") as f:
-                data = f.read()
+            reader = PdfReader(self.path)
+
+            writer = PdfWriter()
+
+            for page in reader.pages:
+                writer.add_page(page)
+
+            buffer = BytesIO()
+            writer.write(buffer)
+            buffer.seek(0)
+
+            data = buffer.read()
             hash = SHA256.new(data)
+            print(hash.hexdigest())
             return hash
         except Exception as e:
             self.status_label.config(text="❌ Wystąpił błąd podczas hashowania pdfa")
 
     def sign_pdf(self):
+        """
+            @brief Podpisuje wybrany plik PDF z użyciem zdeszyfrowanego klucza RSA i zapisuje podpis w metadanych.
+        """
         if self.path == "":
             tk.messagebox.showerror("Błąd", "Wybierz plik")
             self.status_label.config(text="❌ Niewybrano pliku pdf do podpisu")
             return
         self.status_label.config(text="⏳ PDF jest aktualnie podpisywany")
+        reader = PdfReader(self.path)
+        pdf_writer = PdfWriter()
+        pdf_writer.append(self.path)
+        metadata = reader.metadata
+        metadata.update({
+            "/Podpisano przez": "Użytkownik A",
+            "/Podpis": ""
+        })
+        pdf_writer.add_metadata(metadata)
+        with open(self.path, "wb") as f:
+            pdf_writer.write(f)
         hash = self.hash_pdf()
         decrypted_key = self.decrypt_private_key()
         try:
@@ -113,10 +156,17 @@ class MainApp:
             self.status_label.config(text="❌ Wystąpił błąd podczas podpisywania pdfa")
 
     def choosePdfFile(self):
+        """
+            @brief Otwiera okno dialogowe do wyboru pliku PDF i zapisuje jego ścieżkę.
+        """
         self.path = filedialog.askopenfilename(title="Wybierz plik PDF", filetypes=[("Pliki PDF", "*.pdf")])
         self.pathLabel.config(text="Wybrany plik: " + self.path)
     
     def get_usbs(self):
+        """
+            @brief Wyszukuje podłączone urządzenia USB.
+            @return list Lista urządzeń USB (litery dysków).
+        """
         result = []
         partitions = psutil.disk_partitions()
         for p in partitions:
@@ -125,6 +175,9 @@ class MainApp:
         return result
 
     def usb_refresh(self):
+        """
+            @brief Odświeża listę USB i sprawdza, czy zawierają plik klucza prywatnego.
+        """
         current = self.get_usbs()
 
         if not current:
@@ -149,16 +202,27 @@ class MainApp:
         self.master.after(2000, self.usb_refresh)
 
     def get_usb_key(self):
+        """
+            @brief Odczytuje zaszyfrowany klucz prywatny z wybranego dysku USB.
+            @return bytes Zawartość pliku z kluczem.
+        """
         usb_path = self.usb_var.get() + "private_key.enc"
         with open(usb_path, "rb") as f:
             key = f.read()
         return key
 
     def is_usb_key(self):
+        """
+            @brief Sprawdza, czy na wybranym USB znajduje się zaszyfrowany klucz prywatny.
+            @return bool True jeśli plik istnieje, False w przeciwnym razie.
+        """
         usb_path = self.usb_var.get() + "private_key.enc"
         return os.path.isfile(usb_path)
 
     def usb_key_check(self):
+        """
+            @brief Okresowo sprawdza obecność klucza na USB i aktualizuje GUI.
+        """
         self.usb_key_status = self.is_usb_key()
 
         if (self.usb_key_status):
@@ -168,17 +232,31 @@ class MainApp:
         self.master.after(2000, self.usb_key_check)
 
 def choose_encrypt():
+    """
+        @brief Ustawia tryb podpisywania PDF.
+    """
     global encryption
     encryption = True
     start.destroy()
 
 def choose_decrypt():
+    """
+        @brief Ustawia tryb weryfikacji podpisu PDF.
+    """
     global encryption
     encryption = False
     start.destroy()
 
 class SecondApp:
+    """
+        @class SecondApp
+        @brief Aplikacja do weryfikacji podpisu plików PDF przy użyciu klucza publicznego
+    """
     def __init__(self, master):
+        """
+            @brief Inicjalizuje komponenty GUI aplikacji.
+            @param master Główne okno tkinter.
+        """
         self.path = ""
         self.key_path = ""
         self.master = master
@@ -203,23 +281,48 @@ class SecondApp:
         self.status_label.pack(pady=10)
     
     def choosePdfFile(self):
+        """
+            @brief Wybiera plik PDF i aktualizuje etykietę ścieżki.
+        """
         self.path = filedialog.askopenfilename(title="Wybierz plik PDF", filetypes=[("Pliki PDF", "*.pdf")])
         self.pathLabel.config(text="Wybrany plik: " + self.path)
 
     def choose_public_key(self):
+        """
+            @brief Wybiera klucz publiczny z pliku PEM i aktualizuje etykietę.
+        """
         self.key_path = filedialog.askopenfilename(title="Wybierz plik PDF", filetypes=[("Klucze publiczne", "*.pem")])
         self.pathLabelKey.config(text="Wybrany klucz: " + self.key_path)
 
     def hash_pdf(self):
+        """
+           @brief Oblicza hash SHA256 z zawartości PDF.
+           @return Hash obiektu typu SHA256Hash lub None w przypadku błędu.
+        """
         try:
-            with open(self.path, "rb") as f:
-                data = f.read()
+            reader = PdfReader(self.path)
+
+            writer = PdfWriter()
+
+            for page in reader.pages:
+                writer.add_page(page)
+
+            buffer = BytesIO()
+            writer.write(buffer)
+            buffer.seek(0)
+
+            data = buffer.read()
             hash = SHA256.new(data)
+            print(hash.hexdigest())
             return hash
         except Exception as e:
             self.status_label.config(text="❌ Wystąpił błąd podczas hashowania pdfa")
 
     def get_signature(self):
+        """
+            @brief Pobiera podpis z metadanych PDF.
+            @return Podpis w formie bajtów lub None, jeśli nie znaleziono lub wystąpił błąd.
+        """
         try:
             pdf_reader = PdfReader(self.path)
             metadata = pdf_reader.metadata
@@ -231,6 +334,10 @@ class SecondApp:
             self.status_label.config(text="❌ Wystąpił błąd podczas pobierania podpisu z pdfa")
     
     def get_public_key(self):
+        """
+            @brief Wczytuje klucz publiczny z pliku PEM.
+            @return Klucz RSA lub None w przypadku błędu.
+        """
         try:
             with open(self.key_path, "rb") as f:
                 return RSA.import_key(f.read())
@@ -238,6 +345,9 @@ class SecondApp:
             self.status_label.config(text="❌ Wystąpił problem z kluczem publicznym")
     
     def verify_pdf(self):
+        """
+            @brief Weryfikuje podpis PDF przy użyciu SHA256 i RSA.
+        """
         if self.path == "" or self.key_path == "":
             tk.messagebox.showerror("Błąd", "Wybierz plik PDF oraz klucz publiczny")
             self.status_label.config(text="❌ Niewybrano pliku pdf lub klucza")
@@ -252,6 +362,10 @@ class SecondApp:
             self.status_label.config(text="❌ Podpis jest nieprawidłowy")
 
 if __name__ == "__main__":
+    """
+        @brief Główna pętla aplikacji GUI.
+        @details Tworzy ekran startowy z wyborem między podpisywaniem a weryfikacją, a następnie uruchamia odpowiednią część aplikacji.
+    """
     start = tk.Tk()
     start.title("Wybierz akcje")
     start.geometry("400x250")

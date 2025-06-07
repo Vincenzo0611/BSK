@@ -1,0 +1,102 @@
+\doxysection{Dokumentacja klasy main.\+Key\+Gen\+App}
+\hypertarget{classmain_1_1_key_gen_app}{}\label{classmain_1_1_key_gen_app}\index{main.KeyGenApp@{main.KeyGenApp}}
+\doxysubsubsection*{Metody publiczne}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmain_1_1_key_gen_app_a70739541be5508fd16c58cc172f6f07d}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, master)
+\item 
+\mbox{\hyperlink{classmain_1_1_key_gen_app_a9b78ec7081e5f373011c4c77759a87a4}{generate\+\_\+keys}} (self)
+\item 
+\mbox{\hyperlink{classmain_1_1_key_gen_app_af3de070d7a89f4d09db2d0657b6f9e8a}{get\+\_\+usbs}} (self)
+\item 
+\mbox{\hyperlink{classmain_1_1_key_gen_app_aef61d5597ad2db84b9b69963ed49d655}{usb\+\_\+refresh}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Atrybuty publiczne}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmain_1_1_key_gen_app_a78fde6915ebd392af40e0c99470a505c}\label{classmain_1_1_key_gen_app_a78fde6915ebd392af40e0c99470a505c} 
+{\bfseries master} = master
+\item 
+\Hypertarget{classmain_1_1_key_gen_app_ae12061e267d02d16f59fd00ed96baded}\label{classmain_1_1_key_gen_app_ae12061e267d02d16f59fd00ed96baded} 
+{\bfseries label} = tk.\+Label(master, text="{}Wybierz USB"{})
+\item 
+\Hypertarget{classmain_1_1_key_gen_app_a6cb5bb7898af9d227f00a44a49fb187d}\label{classmain_1_1_key_gen_app_a6cb5bb7898af9d227f00a44a49fb187d} 
+list {\bfseries usbs} = self.\+get\+\_\+usbs()
+\item 
+\Hypertarget{classmain_1_1_key_gen_app_ace80eaf6cb6bb9b93e69c428a30c50ad}\label{classmain_1_1_key_gen_app_ace80eaf6cb6bb9b93e69c428a30c50ad} 
+{\bfseries usb\+\_\+var} = tk.\+String\+Var()
+\item 
+\Hypertarget{classmain_1_1_key_gen_app_ae3beb46d3b9a9fc64b8933b5c5208787}\label{classmain_1_1_key_gen_app_ae3beb46d3b9a9fc64b8933b5c5208787} 
+{\bfseries list\+\_\+usbs} = tk.\+Option\+Menu(master, self.\+usb\+\_\+var, \texorpdfstring{$\ast$}{*}self.\+usbs)
+\item 
+\Hypertarget{classmain_1_1_key_gen_app_abcaf61c1e1624b9e83fe848ef75b4f77}\label{classmain_1_1_key_gen_app_abcaf61c1e1624b9e83fe848ef75b4f77} 
+{\bfseries pin\+\_\+entry} = tk.\+Entry(master, show="{}\texorpdfstring{$\ast$}{*}"{}, width=30)
+\item 
+\Hypertarget{classmain_1_1_key_gen_app_a280b4dc2c360eb2c087bfa80e39aea99}\label{classmain_1_1_key_gen_app_a280b4dc2c360eb2c087bfa80e39aea99} 
+{\bfseries generate\+\_\+button} = tk.\+Button(master, text="{}Wygeneruj i Zapisz Klucze"{}, command=self.\+generate\+\_\+keys)
+\item 
+\Hypertarget{classmain_1_1_key_gen_app_a753d4cb12c037d8e6e11edc9e4ef3345}\label{classmain_1_1_key_gen_app_a753d4cb12c037d8e6e11edc9e4ef3345} 
+{\bfseries status\+\_\+label} = tk.\+Label(master, text="{}"{})
+\item 
+\Hypertarget{classmain_1_1_key_gen_app_ac6b5313b3476c96d987fbc26bd18d8f7}\label{classmain_1_1_key_gen_app_ac6b5313b3476c96d987fbc26bd18d8f7} 
+list {\bfseries last\+\_\+usb\+\_\+state} = self.\+usbs
+\item 
+\Hypertarget{classmain_1_1_key_gen_app_a40903f15810bc1b198a40f79bb0bd63f}\label{classmain_1_1_key_gen_app_a40903f15810bc1b198a40f79bb0bd63f} 
+{\bfseries usb\+\_\+refresh}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Opis szczegółowy}
+\begin{DoxyVerb}    @class KeyGenApp
+    @brief Klasa GUI do generowania kluczy RSA oraz zapisywania ich na USB.
+\end{DoxyVerb}
+ 
+
+\label{doc-constructors}
+\Hypertarget{classmain_1_1_key_gen_app_doc-constructors}
+\doxysubsection{Dokumentacja konstruktora i destruktora}
+\Hypertarget{classmain_1_1_key_gen_app_a70739541be5508fd16c58cc172f6f07d}\index{main.KeyGenApp@{main.KeyGenApp}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!main.KeyGenApp@{main.KeyGenApp}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classmain_1_1_key_gen_app_a70739541be5508fd16c58cc172f6f07d} 
+main.\+Key\+Gen\+App.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{master}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Inicjalizuje interfejs użytkownika aplikacji do generowania kluczy.
+    @param master Główne okno tkinter.
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{classmain_1_1_key_gen_app_doc-func-members}
+\doxysubsection{Dokumentacja funkcji składowych}
+\Hypertarget{classmain_1_1_key_gen_app_a9b78ec7081e5f373011c4c77759a87a4}\index{main.KeyGenApp@{main.KeyGenApp}!generate\_keys@{generate\_keys}}
+\index{generate\_keys@{generate\_keys}!main.KeyGenApp@{main.KeyGenApp}}
+\doxysubsubsection{\texorpdfstring{generate\_keys()}{generate\_keys()}}
+{\footnotesize\ttfamily \label{classmain_1_1_key_gen_app_a9b78ec7081e5f373011c4c77759a87a4} 
+main.\+Key\+Gen\+App.\+generate\+\_\+keys (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Generuje parę kluczy RSA, szyfruje prywatny i zapisuje na USB.
+    @details PIN jest haszowany za pomocą SHA-256 i wykorzystywany do szyfrowania klucza prywatnego przy użyciu AES-256 w trybie CBC. Klucz prywatny jest zapisywany na USB, a klucz publiczny lokalnie.
+\end{DoxyVerb}
+ \Hypertarget{classmain_1_1_key_gen_app_af3de070d7a89f4d09db2d0657b6f9e8a}\index{main.KeyGenApp@{main.KeyGenApp}!get\_usbs@{get\_usbs}}
+\index{get\_usbs@{get\_usbs}!main.KeyGenApp@{main.KeyGenApp}}
+\doxysubsubsection{\texorpdfstring{get\_usbs()}{get\_usbs()}}
+{\footnotesize\ttfamily \label{classmain_1_1_key_gen_app_af3de070d7a89f4d09db2d0657b6f9e8a} 
+main.\+Key\+Gen\+App.\+get\+\_\+usbs (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Wyszukuje podłączone urządzenia USB.
+    @return list Lista urządzeń USB (litery dysków).
+\end{DoxyVerb}
+ \Hypertarget{classmain_1_1_key_gen_app_aef61d5597ad2db84b9b69963ed49d655}\index{main.KeyGenApp@{main.KeyGenApp}!usb\_refresh@{usb\_refresh}}
+\index{usb\_refresh@{usb\_refresh}!main.KeyGenApp@{main.KeyGenApp}}
+\doxysubsubsection{\texorpdfstring{usb\_refresh()}{usb\_refresh()}}
+{\footnotesize\ttfamily \label{classmain_1_1_key_gen_app_aef61d5597ad2db84b9b69963ed49d655} 
+main.\+Key\+Gen\+App.\+usb\+\_\+refresh (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Odświeża listę USB.
+\end{DoxyVerb}
+ 
+
+Dokumentacja dla tej klasy została wygenerowana z pliku\+:\begin{DoxyCompactItemize}
+\item 
+main.\+py\end{DoxyCompactItemize}

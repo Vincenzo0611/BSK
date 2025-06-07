@@ -12,7 +12,15 @@ from Crypto.Util.Padding import pad
 
 
 class KeyGenApp:
+    """
+        @class KeyGenApp
+        @brief Klasa GUI do generowania kluczy RSA oraz zapisywania ich na USB.
+    """
     def __init__(self, master):
+        """
+            @brief Inicjalizuje interfejs użytkownika aplikacji do generowania kluczy.
+            @param master Główne okno tkinter.
+        """
         self.master = master
         master.title("Generator Kluczy RSA")
         master.geometry("400x250")
@@ -46,6 +54,10 @@ class KeyGenApp:
         self.master.after(2000, self.usb_refresh)
 
     def generate_keys(self):
+        """
+            @brief Generuje parę kluczy RSA, szyfruje prywatny i zapisuje na USB.
+            @details PIN jest haszowany za pomocą SHA-256 i wykorzystywany do szyfrowania klucza prywatnego przy użyciu AES-256 w trybie CBC. Klucz prywatny jest zapisywany na USB, a klucz publiczny lokalnie.
+        """
         pin = self.pin_entry.get()
         usb_path = self.usb_var.get()
         if not pin:
@@ -80,6 +92,10 @@ class KeyGenApp:
             tk.messagebox.showerror("Błąd", f"Wystąpił błąd: {str(e)}")
             self.status_label.config(text="❌ Wystąpił błąd.")
     def get_usbs(self):
+        """
+            @brief Wyszukuje podłączone urządzenia USB.
+            @return list Lista urządzeń USB (litery dysków).
+        """
         result = []
         partitions = psutil.disk_partitions()
         for p in partitions:
@@ -87,6 +103,9 @@ class KeyGenApp:
                 result.append(p.device)
         return result
     def usb_refresh(self):
+        """
+            @brief Odświeża listę USB.
+        """
         current = self.get_usbs()
 
         if not current:
@@ -106,6 +125,9 @@ class KeyGenApp:
 
 
 if __name__ == "__main__":
+    """
+        @brief Punkt wejścia aplikacji.
+    """
     root = tk.Tk()
     app = KeyGenApp(root)
     root.mainloop()

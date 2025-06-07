@@ -1,0 +1,189 @@
+\doxysection{Dokumentacja klasy main-\/app.Main\+App}
+\hypertarget{classmain-app_1_1_main_app}{}\label{classmain-app_1_1_main_app}\index{main-\/app.MainApp@{main-\/app.MainApp}}
+\doxysubsubsection*{Metody publiczne}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmain-app_1_1_main_app_a01db87a5a39f142518db5ec34b88c021}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, master)
+\item 
+\mbox{\hyperlink{classmain-app_1_1_main_app_ab7fc541f7461ddbbd369b288282250c6}{decrypt\+\_\+private\+\_\+key}} (self)
+\item 
+\mbox{\hyperlink{classmain-app_1_1_main_app_a5c975dd6448a379d90a1e2596384c393}{hash\+\_\+pdf}} (self)
+\item 
+\mbox{\hyperlink{classmain-app_1_1_main_app_a802e237547178ca1a03d66b3d712a622}{sign\+\_\+pdf}} (self)
+\item 
+\mbox{\hyperlink{classmain-app_1_1_main_app_aa6e092b13506dccab3309075f704f500}{choose\+Pdf\+File}} (self)
+\item 
+\mbox{\hyperlink{classmain-app_1_1_main_app_ac7e956d04c0e9d12456d672fb541ff3f}{get\+\_\+usbs}} (self)
+\item 
+\mbox{\hyperlink{classmain-app_1_1_main_app_a6c1b403e77daabcb1736ef5ac659a115}{usb\+\_\+refresh}} (self)
+\item 
+\mbox{\hyperlink{classmain-app_1_1_main_app_a0f58a22e1950444b1bed7b039f75e632}{get\+\_\+usb\+\_\+key}} (self)
+\item 
+\mbox{\hyperlink{classmain-app_1_1_main_app_a54d06683d5abe1bf32a2cbe21bcdf22e}{is\+\_\+usb\+\_\+key}} (self)
+\item 
+\mbox{\hyperlink{classmain-app_1_1_main_app_a987afdd1f7de5b5771ba1525db195848}{usb\+\_\+key\+\_\+check}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Atrybuty publiczne}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmain-app_1_1_main_app_a49a91666ead871b9a4a7f7b574fbf89a}\label{classmain-app_1_1_main_app_a49a91666ead871b9a4a7f7b574fbf89a} 
+str {\bfseries path} = "{}"{}
+\item 
+\Hypertarget{classmain-app_1_1_main_app_a1b81838b04ca2321811240a32c18e2ce}\label{classmain-app_1_1_main_app_a1b81838b04ca2321811240a32c18e2ce} 
+{\bfseries master} = master
+\item 
+\Hypertarget{classmain-app_1_1_main_app_aee39cb85922df808475d1cd35387adf6}\label{classmain-app_1_1_main_app_aee39cb85922df808475d1cd35387adf6} 
+list {\bfseries usbs} = self.\+get\+\_\+usbs()
+\item 
+\Hypertarget{classmain-app_1_1_main_app_a4fdc9d1e4d509af6d1fcaff3ff0961ef}\label{classmain-app_1_1_main_app_a4fdc9d1e4d509af6d1fcaff3ff0961ef} 
+{\bfseries usb\+\_\+var} = tk.\+String\+Var()
+\item 
+\Hypertarget{classmain-app_1_1_main_app_a91b91a14c1b0dbb8b73bf88854637480}\label{classmain-app_1_1_main_app_a91b91a14c1b0dbb8b73bf88854637480} 
+{\bfseries usb\+\_\+key\+\_\+status} = self.\+is\+\_\+usb\+\_\+key()
+\item 
+\Hypertarget{classmain-app_1_1_main_app_aa4fc859555e3ecba1cf0ff49b444ef72}\label{classmain-app_1_1_main_app_aa4fc859555e3ecba1cf0ff49b444ef72} 
+{\bfseries usb\+\_\+key\+\_\+status\+\_\+text} = tk.\+String\+Var()
+\item 
+\Hypertarget{classmain-app_1_1_main_app_a3bacbcd749aee99097460813e9430f70}\label{classmain-app_1_1_main_app_a3bacbcd749aee99097460813e9430f70} 
+{\bfseries private\+\_\+key} = self.\+get\+\_\+usb\+\_\+key()
+\item 
+\Hypertarget{classmain-app_1_1_main_app_a8dbb5cd55354ad93d7ede5b067a63339}\label{classmain-app_1_1_main_app_a8dbb5cd55354ad93d7ede5b067a63339} 
+{\bfseries list\+\_\+usbs} = tk.\+Option\+Menu(master, self.\+usb\+\_\+var, \texorpdfstring{$\ast$}{*}self.\+usbs)
+\item 
+\Hypertarget{classmain-app_1_1_main_app_aba8b5a8b0180fa5c22e6dfc8bf9e99d6}\label{classmain-app_1_1_main_app_aba8b5a8b0180fa5c22e6dfc8bf9e99d6} 
+{\bfseries usb\+\_\+key\+\_\+status\+\_\+label} = tk.\+Label(master, textvariable=self.\+usb\+\_\+key\+\_\+status\+\_\+text)
+\item 
+\Hypertarget{classmain-app_1_1_main_app_ad98e83f117bfc60542696ababa660ec3}\label{classmain-app_1_1_main_app_ad98e83f117bfc60542696ababa660ec3} 
+{\bfseries choose\+\_\+pdf\+\_\+button} = tk.\+Button(master, text="{}Wybierz plik PDF"{}, command=self.\+choose\+Pdf\+File)
+\item 
+\Hypertarget{classmain-app_1_1_main_app_a2c5bb4eb8bf8761d11ed833ad31feeb3}\label{classmain-app_1_1_main_app_a2c5bb4eb8bf8761d11ed833ad31feeb3} 
+{\bfseries path\+Label} = tk.\+Label(master, text="{}Wybrany plik\+: "{})
+\item 
+\Hypertarget{classmain-app_1_1_main_app_a525c2ff7f8d4f216135c20132a2a2fa1}\label{classmain-app_1_1_main_app_a525c2ff7f8d4f216135c20132a2a2fa1} 
+{\bfseries label} = tk.\+Label(master, text="{}Wprowadź PIN\+:"{})
+\item 
+\Hypertarget{classmain-app_1_1_main_app_a851282b0da1f971f29e4e26afbe4574b}\label{classmain-app_1_1_main_app_a851282b0da1f971f29e4e26afbe4574b} 
+{\bfseries pin\+\_\+entry} = tk.\+Entry(master, show="{}\texorpdfstring{$\ast$}{*}"{}, width=30)
+\item 
+\Hypertarget{classmain-app_1_1_main_app_a2cd00114cc6d70e6e257c192eacd0054}\label{classmain-app_1_1_main_app_a2cd00114cc6d70e6e257c192eacd0054} 
+{\bfseries generate\+\_\+button} = tk.\+Button(master, text="{}Podpisz PDF"{}, command=self.\+sign\+\_\+pdf)
+\item 
+\Hypertarget{classmain-app_1_1_main_app_ac829fb04bf534ed235b6459e2716313c}\label{classmain-app_1_1_main_app_ac829fb04bf534ed235b6459e2716313c} 
+{\bfseries status\+\_\+label} = tk.\+Label(master, text="{}"{})
+\item 
+\Hypertarget{classmain-app_1_1_main_app_ac0d997ad0b4b62700ae062253a390ba6}\label{classmain-app_1_1_main_app_ac0d997ad0b4b62700ae062253a390ba6} 
+list {\bfseries last\+\_\+usb\+\_\+state} = self.\+usbs
+\item 
+\Hypertarget{classmain-app_1_1_main_app_af953bcf1f92e580a82283b4b59a4b3fc}\label{classmain-app_1_1_main_app_af953bcf1f92e580a82283b4b59a4b3fc} 
+{\bfseries usb\+\_\+refresh}
+\item 
+\Hypertarget{classmain-app_1_1_main_app_a32ff1c3e0410115ab0b2be1990e99098}\label{classmain-app_1_1_main_app_a32ff1c3e0410115ab0b2be1990e99098} 
+{\bfseries usb\+\_\+key\+\_\+check}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Opis szczegółowy}
+\begin{DoxyVerb}   @class MainApp
+   @brief Aplikacja do podpisywania plików PDF przy użyciu klucza prywatnego z USB i wprowadzonego PIN-u.
+\end{DoxyVerb}
+ 
+
+\label{doc-constructors}
+\Hypertarget{classmain-app_1_1_main_app_doc-constructors}
+\doxysubsection{Dokumentacja konstruktora i destruktora}
+\Hypertarget{classmain-app_1_1_main_app_a01db87a5a39f142518db5ec34b88c021}\index{main-\/app.MainApp@{main-\/app.MainApp}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!main-\/app.MainApp@{main-\/app.MainApp}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classmain-app_1_1_main_app_a01db87a5a39f142518db5ec34b88c021} 
+main-\/app.\+Main\+App.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{master}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Inicjalizuje GUI
+    @param master Obiekt głównego okna tkinter.
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{classmain-app_1_1_main_app_doc-func-members}
+\doxysubsection{Dokumentacja funkcji składowych}
+\Hypertarget{classmain-app_1_1_main_app_aa6e092b13506dccab3309075f704f500}\index{main-\/app.MainApp@{main-\/app.MainApp}!choosePdfFile@{choosePdfFile}}
+\index{choosePdfFile@{choosePdfFile}!main-\/app.MainApp@{main-\/app.MainApp}}
+\doxysubsubsection{\texorpdfstring{choosePdfFile()}{choosePdfFile()}}
+{\footnotesize\ttfamily \label{classmain-app_1_1_main_app_aa6e092b13506dccab3309075f704f500} 
+main-\/app.\+Main\+App.\+choose\+Pdf\+File (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Otwiera okno dialogowe do wyboru pliku PDF i zapisuje jego ścieżkę.
+\end{DoxyVerb}
+ \Hypertarget{classmain-app_1_1_main_app_ab7fc541f7461ddbbd369b288282250c6}\index{main-\/app.MainApp@{main-\/app.MainApp}!decrypt\_private\_key@{decrypt\_private\_key}}
+\index{decrypt\_private\_key@{decrypt\_private\_key}!main-\/app.MainApp@{main-\/app.MainApp}}
+\doxysubsubsection{\texorpdfstring{decrypt\_private\_key()}{decrypt\_private\_key()}}
+{\footnotesize\ttfamily \label{classmain-app_1_1_main_app_ab7fc541f7461ddbbd369b288282250c6} 
+main-\/app.\+Main\+App.\+decrypt\+\_\+private\+\_\+key (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Deszyfruje klucz prywatny z pendrive'a za pomocą wprowadzonego PIN-u.
+    @return RSA.RsaKey Obiekt zdeszyfrowanego klucza RSA lub None w przypadku błędu.
+\end{DoxyVerb}
+ \Hypertarget{classmain-app_1_1_main_app_a0f58a22e1950444b1bed7b039f75e632}\index{main-\/app.MainApp@{main-\/app.MainApp}!get\_usb\_key@{get\_usb\_key}}
+\index{get\_usb\_key@{get\_usb\_key}!main-\/app.MainApp@{main-\/app.MainApp}}
+\doxysubsubsection{\texorpdfstring{get\_usb\_key()}{get\_usb\_key()}}
+{\footnotesize\ttfamily \label{classmain-app_1_1_main_app_a0f58a22e1950444b1bed7b039f75e632} 
+main-\/app.\+Main\+App.\+get\+\_\+usb\+\_\+key (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Odczytuje zaszyfrowany klucz prywatny z wybranego dysku USB.
+    @return bytes Zawartość pliku z kluczem.
+\end{DoxyVerb}
+ \Hypertarget{classmain-app_1_1_main_app_ac7e956d04c0e9d12456d672fb541ff3f}\index{main-\/app.MainApp@{main-\/app.MainApp}!get\_usbs@{get\_usbs}}
+\index{get\_usbs@{get\_usbs}!main-\/app.MainApp@{main-\/app.MainApp}}
+\doxysubsubsection{\texorpdfstring{get\_usbs()}{get\_usbs()}}
+{\footnotesize\ttfamily \label{classmain-app_1_1_main_app_ac7e956d04c0e9d12456d672fb541ff3f} 
+main-\/app.\+Main\+App.\+get\+\_\+usbs (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Wyszukuje podłączone urządzenia USB.
+    @return list Lista urządzeń USB (litery dysków).
+\end{DoxyVerb}
+ \Hypertarget{classmain-app_1_1_main_app_a5c975dd6448a379d90a1e2596384c393}\index{main-\/app.MainApp@{main-\/app.MainApp}!hash\_pdf@{hash\_pdf}}
+\index{hash\_pdf@{hash\_pdf}!main-\/app.MainApp@{main-\/app.MainApp}}
+\doxysubsubsection{\texorpdfstring{hash\_pdf()}{hash\_pdf()}}
+{\footnotesize\ttfamily \label{classmain-app_1_1_main_app_a5c975dd6448a379d90a1e2596384c393} 
+main-\/app.\+Main\+App.\+hash\+\_\+pdf (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Tworzy hash SHA-256 z zawartości pliku PDF.
+    @return SHA256 Hash obiektu PDF lub None w przypadku błędu.
+\end{DoxyVerb}
+ \Hypertarget{classmain-app_1_1_main_app_a54d06683d5abe1bf32a2cbe21bcdf22e}\index{main-\/app.MainApp@{main-\/app.MainApp}!is\_usb\_key@{is\_usb\_key}}
+\index{is\_usb\_key@{is\_usb\_key}!main-\/app.MainApp@{main-\/app.MainApp}}
+\doxysubsubsection{\texorpdfstring{is\_usb\_key()}{is\_usb\_key()}}
+{\footnotesize\ttfamily \label{classmain-app_1_1_main_app_a54d06683d5abe1bf32a2cbe21bcdf22e} 
+main-\/app.\+Main\+App.\+is\+\_\+usb\+\_\+key (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Sprawdza, czy na wybranym USB znajduje się zaszyfrowany klucz prywatny.
+    @return bool True jeśli plik istnieje, False w przeciwnym razie.
+\end{DoxyVerb}
+ \Hypertarget{classmain-app_1_1_main_app_a802e237547178ca1a03d66b3d712a622}\index{main-\/app.MainApp@{main-\/app.MainApp}!sign\_pdf@{sign\_pdf}}
+\index{sign\_pdf@{sign\_pdf}!main-\/app.MainApp@{main-\/app.MainApp}}
+\doxysubsubsection{\texorpdfstring{sign\_pdf()}{sign\_pdf()}}
+{\footnotesize\ttfamily \label{classmain-app_1_1_main_app_a802e237547178ca1a03d66b3d712a622} 
+main-\/app.\+Main\+App.\+sign\+\_\+pdf (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Podpisuje wybrany plik PDF z użyciem zdeszyfrowanego klucza RSA i zapisuje podpis w metadanych.
+\end{DoxyVerb}
+ \Hypertarget{classmain-app_1_1_main_app_a987afdd1f7de5b5771ba1525db195848}\index{main-\/app.MainApp@{main-\/app.MainApp}!usb\_key\_check@{usb\_key\_check}}
+\index{usb\_key\_check@{usb\_key\_check}!main-\/app.MainApp@{main-\/app.MainApp}}
+\doxysubsubsection{\texorpdfstring{usb\_key\_check()}{usb\_key\_check()}}
+{\footnotesize\ttfamily \label{classmain-app_1_1_main_app_a987afdd1f7de5b5771ba1525db195848} 
+main-\/app.\+Main\+App.\+usb\+\_\+key\+\_\+check (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Okresowo sprawdza obecność klucza na USB i aktualizuje GUI.
+\end{DoxyVerb}
+ \Hypertarget{classmain-app_1_1_main_app_a6c1b403e77daabcb1736ef5ac659a115}\index{main-\/app.MainApp@{main-\/app.MainApp}!usb\_refresh@{usb\_refresh}}
+\index{usb\_refresh@{usb\_refresh}!main-\/app.MainApp@{main-\/app.MainApp}}
+\doxysubsubsection{\texorpdfstring{usb\_refresh()}{usb\_refresh()}}
+{\footnotesize\ttfamily \label{classmain-app_1_1_main_app_a6c1b403e77daabcb1736ef5ac659a115} 
+main-\/app.\+Main\+App.\+usb\+\_\+refresh (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Odświeża listę USB i sprawdza, czy zawierają plik klucza prywatnego.
+\end{DoxyVerb}
+ 
+
+Dokumentacja dla tej klasy została wygenerowana z pliku\+:\begin{DoxyCompactItemize}
+\item 
+main-\/app.\+py\end{DoxyCompactItemize}
