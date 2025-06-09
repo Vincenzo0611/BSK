@@ -67,15 +67,12 @@ class KeyGenApp:
         self.status_label.config(text="⏳ Trwa generowanie kluczy RSA...")
         self.master.update()
         try:
-            # Generowanie kluczy
             key = RSA.generate(4096)
             private_key = key.export_key()
             public_key = key.publickey().export_key()
 
-            # Hashowanie PIN-u
             hashed_pin = hashlib.sha256(pin.encode()).digest()
 
-            # Szyfrowanie klucza prywatnego AES-256
             iv = get_random_bytes(16)
             cipher = AES.new(hashed_pin, AES.MODE_CBC, iv)
             encrypted_private_key = cipher.encrypt(pad(private_key, AES.block_size))
